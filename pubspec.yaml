@@ -1,0 +1,32 @@
+name: background_task_optimizer
+description: "A Flutter package to optimize background task management using isolates and concurrency."
+version: 0.0.1
+homepage: https://github.com/your-username/background_task_optimizer # Cambia esta URL si tienes un repositorio
+
+
+environment:
+  sdk: ^3.7.0-112.0.dev
+  flutter: ">=1.17.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^5.0.0
+
+flutter:
+  plugin:
+    platforms:
+      android:
+        package: com.example.background_task_optimizer
+        pluginClass: BackgroundTaskOptimizerPlugin
+      ios:
+        pluginClass: BackgroundTaskOptimizerPlugin
+        # Agrega cualquier otra plataforma si es necesario
+
+# Define una licencia para tu librería. Puedes cambiarla si es diferente.
+license: MIT
