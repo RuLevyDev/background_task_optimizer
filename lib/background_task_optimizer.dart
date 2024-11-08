@@ -117,7 +117,7 @@ class BackgroundTask {
         }
 
         if (enableProfiling) {
-          developer.log("Attempt #${attempt} failed, retrying...");
+          developer.log("Attempt #$attempt failed, retrying...");
         }
         await Future.delayed(backoffDelay);
         backoffDelay *= 2; // Exponential backoff
