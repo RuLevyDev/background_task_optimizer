@@ -21,13 +21,21 @@ To use this package, add it to your `pubspec.yaml` file:
 
 ```yaml
 dependencies:
-  background_task: ^1.0.0
+  background_task: ^1.1.0
 ```
+or run
+```bash
+flutter pub add background_task
+```
+to get the last version.
 
 Then, run the following command to install the package:
 
 ```bash
 dart pub get
+```
+```bash
+flutter pub get
 ```
 
 ## Usage
