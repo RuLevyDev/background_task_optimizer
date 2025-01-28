@@ -1,6 +1,6 @@
 name: background_task_optimizer
 description: "A Flutter package to optimize background task management using isolates and concurrency."
-version: 1.1.0
+version: 1.1.1
 homepage: https://github.com/RuLevyDev/background_task_optimizer
 
 environment:
@@ -16,10 +16,6 @@ dev_dependencies:
     sdk: flutter
   flutter_lints: ^5.0.0
 
-
-
-  
-   
 
 keywords:
   - flutter

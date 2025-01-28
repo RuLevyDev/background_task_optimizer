@@ -1,6 +1,6 @@
 # Changelog
 
-## [1.1.0-dev] - 2024-11-08
+## [1.1.1] - 2024-11-08
 ### Added
 - Introduced `runExpensiveOperationWith<T>` method with an optional `timeout` parameter:
   - Allows running a heavy operation in an isolate with optional timeout handling.
