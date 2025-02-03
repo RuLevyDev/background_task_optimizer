@@ -7,6 +7,8 @@ import 'dart:async';
 import 'dart:developer' as developer;
 import 'dart:isolate';
 
+import 'task_execution_exception.dart';
+
 /// A utility class to perform heavy tasks in a separate isolate.
 class BackgroundTask {
   /// Executes a computationally expensive [operation] in a separate isolate
@@ -212,20 +214,5 @@ class BackgroundTask {
     } catch (e) {
       sendPort.send('error: $e');
     }
-  }
-}
-
-/// A custom exception for task execution failures, providing more detailed information.
-class TaskExecutionException implements Exception {
-  final String message;
-  final Object? cause;
-  final StackTrace? stackTrace;
-
-  TaskExecutionException(this.message, [this.cause, this.stackTrace]);
-
-  @override
-  String toString() {
-    final causeMsg = cause != null ? ' Cause: $cause' : '';
-    return '$message$causeMsg';
   }
 }

@@ -4,6 +4,7 @@
 // ︻デ═一
 
 import 'package:background_task_optimizer/background_task_optimizer.dart';
+import 'package:background_task_optimizer/task_execution_exception.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'dart:async';
 
