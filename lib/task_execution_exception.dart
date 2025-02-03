@@ -1,4 +1,7 @@
-/// A custom exception for task execution failures, providing more detailed information.
+/// An exception thrown when a background task fails during execution.
+///
+/// This exception is used to wrap errors occurring inside an isolate task.
+/// It provides a message, the original error, and the associated stack trace.
 class TaskExecutionException implements Exception {
   /// A descriptive error message explaining the reason for the exception.
   final String message;

@@ -9,7 +9,12 @@ import 'dart:isolate';
 
 import 'task_execution_exception.dart';
 
-/// A utility class to perform heavy tasks in a separate isolate.
+/// A utility class for running computationally expensive tasks in a separate isolate.
+///
+/// This class provides methods to execute heavy operations asynchronously,
+/// with options for timeout handling, retries, and performance profiling.
+///
+/// The utility also supports running tasks with timeouts and retries.
 class BackgroundTask {
   /// Executes a computationally expensive [operation] in a separate isolate
   /// and returns the result asynchronously.
