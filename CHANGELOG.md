@@ -1,5 +1,7 @@
 # Changelog
-
+## [1.1.3] - 2024-03-02
+### Added
+- Example added
 ## [1.1.2] - 2024-11-08
 ### Added
 - Introduced `runExpensiveOperationWith<T>` method with an optional `timeout` parameter:
