@@ -16,7 +16,7 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v4
 
-      # Cache para el SDK de Flutter
+      # Cache Flutter SDK
       - name: Cache Flutter SDK
         uses: actions/cache@v3
         with:
@@ -25,14 +25,14 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-flutter-sdk-
 
-      # Setup Flutter usando acción oficial (más estable)
+      # Setup Flutter using the official action (more stable)
       - name: Setup Flutter
         uses: subosito/flutter-action@v2
         with:
-          flutter-version: 3.x  # Usa la versión de Flutter que necesites
-          cache: true  # Habilita caché automático para mejorar la velocidad
+          flutter-version: 3.30 
+          cache: true  # Enables automatic caching for better performance
 
-      # Cache para las dependencias de Dart
+      # Cache Dart dependencies
       - name: Cache Dart Dependencies
         uses: actions/cache@v3
         with:
@@ -51,6 +51,7 @@ jobs:
 
       - name: Run Tests
         run: flutter test
+
 
   # Publicación desactivada en esta etapa
   publish:
