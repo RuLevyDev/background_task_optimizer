@@ -20,8 +20,8 @@ jobs:
       - name: Cache Flutter SDK
         uses: actions/cache@v3
         with:
-          path: ~/.pub-cache
-          key: ${{ runner.os }}-flutter-sdk-${{ hashFiles('**/pubspec.yaml') }}-${{ runner.os }}-${{ github.sha }}
+          path: ~/.flutter
+          key: ${{ runner.os }}-flutter-sdk-${{ matrix.flutter-version }}-${{ runner.os }}
           restore-keys: |
             ${{ runner.os }}-flutter-sdk-${{ runner.os }}-
 
@@ -38,7 +38,7 @@ jobs:
           path: |
             ~/.pub-cache
             .dart_tool
-          key: ${{ runner.os }}-flutter-deps-${{ hashFiles('**/pubspec.yaml') }}-${{ runner.os }}-${{ github.sha }}
+          key: ${{ runner.os }}-flutter-deps-${{ hashFiles('**/pubspec.yaml') }}-${{ runner.os }}
           restore-keys: |
             ${{ runner.os }}-flutter-deps-${{ runner.os }}-
 
@@ -65,8 +65,8 @@ jobs:
       - name: Cache Flutter SDK
         uses: actions/cache@v3
         with:
-          path: ~/.pub-cache
-          key: ${{ runner.os }}-flutter-sdk-${{ hashFiles('**/pubspec.yaml') }}-${{ runner.os }}-${{ github.sha }}
+          path: ~/.flutter
+          key: ${{ runner.os }}-flutter-sdk-${{ matrix.flutter-version }}-${{ runner.os }}
           restore-keys: |
             ${{ runner.os }}-flutter-sdk-${{ runner.os }}-
 
@@ -83,7 +83,7 @@ jobs:
           path: |
             ~/.pub-cache
             .dart_tool
-          key: ${{ runner.os }}-flutter-deps-${{ hashFiles('**/pubspec.yaml') }}-${{ runner.os }}-${{ github.sha }}
+          key: ${{ runner.os }}-flutter-deps-${{ hashFiles('**/pubspec.yaml') }}-${{ runner.os }}
           restore-keys: |
             ${{ runner.os }}-flutter-deps-${{ runner.os }}-
 
@@ -95,5 +95,8 @@ jobs:
 
       - name: Publish to Pub.dev
         env:
+          PUB_CREDENTIALS: ${{ secrets.PUB_CREDENTIALS }}
+        run: echo "$PUB_CREDENTIALS" > ~/.pub-cache/credentials.json && dart pub publish -f
+
           PUB_CREDENTIALS: ${{ secrets.PUB_CREDENTIALS }}
         run: echo "$PUB_CREDENTIALS" > ~/.pub-cache/credentials.json && dart pub publish -f
