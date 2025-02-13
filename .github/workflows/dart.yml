@@ -25,15 +25,14 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-flutter-sdk-
 
-      # Setup Flutter (evitando reinstalación si ya está en caché)
+      # Setup Flutter manualmente si no está en caché
       - name: Setup Flutter
         run: |
           if [ ! -d "$HOME/flutter" ]; then
             echo "Flutter no está instalado, descargando..."
-            git clone https://github.com/flutter/flutter.git --depth 1 -b stable ~/flutter
-          else
-            echo "Flutter ya está instalado, saltando instalación."
+            git clone --depth 1 --branch 3.x https://github.com/flutter/flutter.git $HOME/flutter
           fi
+          echo "Agregando Flutter al PATH"
           echo "$HOME/flutter/bin" >> $GITHUB_PATH
           flutter --version
 
@@ -76,15 +75,14 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-flutter-sdk-
 
-      # Setup Flutter (evitando reinstalación si ya está en caché)
+      # Setup Flutter manualmente si no está en caché
       - name: Setup Flutter
         run: |
           if [ ! -d "$HOME/flutter" ]; then
             echo "Flutter no está instalado, descargando..."
-            git clone https://github.com/flutter/flutter.git --depth 1 -b stable ~/flutter
-          else
-            echo "Flutter ya está instalado, saltando instalación."
+            git clone --depth 1 --branch 3.x https://github.com/flutter/flutter.git $HOME/flutter
           fi
+          echo "Agregando Flutter al PATH"
           echo "$HOME/flutter/bin" >> $GITHUB_PATH
           flutter --version
 
@@ -109,3 +107,4 @@ jobs:
         env:
           PUB_CREDENTIALS: ${{ secrets.PUB_CREDENTIALS }}
         run: echo "$PUB_CREDENTIALS" > ~/.pub-cache/credentials.json && dart pub publish -f
+
