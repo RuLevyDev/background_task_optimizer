@@ -35,7 +35,7 @@ jobs:
           echo "Agregando Flutter al PATH"
           echo "$HOME/flutter/bin" >> $GITHUB_PATH
           export PATH="$HOME/flutter/bin:$PATH"
-          flutter --version  # Verifica que Flutter está instalado correctamente
+          flutter doctor  # Verifica que Flutter está instalado correctamente
 
       # Cache para las dependencias de Dart
       - name: Cache Dart Dependencies
