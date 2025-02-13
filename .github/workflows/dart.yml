@@ -16,7 +16,7 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v4
 
-      # Cache para dependencias de Flutter y el SDK de Flutter
+      # Cache para el SDK de Flutter
       - name: Cache Flutter SDK
         uses: actions/cache@v3
         with:
@@ -61,7 +61,7 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v4
 
-      # Cache para dependencias de Flutter
+      # Cache para el SDK de Flutter
       - name: Cache Flutter SDK
         uses: actions/cache@v3
         with:
