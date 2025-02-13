@@ -21,9 +21,9 @@ jobs:
         uses: actions/cache@v3
         with:
           path: ~/.pub-cache
-          key: ${{ runner.os }}-flutter-sdk-${{ hashFiles('**/pubspec.yaml') }}
+          key: ${{ runner.os }}-flutter-sdk-${{ hashFiles('**/pubspec.yaml') }}-${{ runner.os }}-${{ github.sha }}
           restore-keys: |
-            ${{ runner.os }}-flutter-sdk-
+            ${{ runner.os }}-flutter-sdk-${{ runner.os }}-
 
       # Setup Flutter
       - name: Setup Flutter
@@ -38,9 +38,9 @@ jobs:
           path: |
             ~/.pub-cache
             .dart_tool
-          key: ${{ runner.os }}-flutter-deps-${{ hashFiles('**/pubspec.yaml') }}
+          key: ${{ runner.os }}-flutter-deps-${{ hashFiles('**/pubspec.yaml') }}-${{ runner.os }}-${{ github.sha }}
           restore-keys: |
-            ${{ runner.os }}-flutter-deps-
+            ${{ runner.os }}-flutter-deps-${{ runner.os }}-
 
       - name: Install Dependencies
         run: flutter pub get
@@ -66,9 +66,9 @@ jobs:
         uses: actions/cache@v3
         with:
           path: ~/.pub-cache
-          key: ${{ runner.os }}-flutter-sdk-${{ hashFiles('**/pubspec.yaml') }}
+          key: ${{ runner.os }}-flutter-sdk-${{ hashFiles('**/pubspec.yaml') }}-${{ runner.os }}-${{ github.sha }}
           restore-keys: |
-            ${{ runner.os }}-flutter-sdk-
+            ${{ runner.os }}-flutter-sdk-${{ runner.os }}-
 
       # Setup Flutter
       - name: Setup Flutter
@@ -83,9 +83,9 @@ jobs:
           path: |
             ~/.pub-cache
             .dart_tool
-          key: ${{ runner.os }}-flutter-deps-${{ hashFiles('**/pubspec.yaml') }}
+          key: ${{ runner.os }}-flutter-deps-${{ hashFiles('**/pubspec.yaml') }}-${{ runner.os }}-${{ github.sha }}
           restore-keys: |
-            ${{ runner.os }}-flutter-deps-
+            ${{ runner.os }}-flutter-deps-${{ runner.os }}-
 
       - name: Install Dependencies
         run: flutter pub get
@@ -97,4 +97,3 @@ jobs:
         env:
           PUB_CREDENTIALS: ${{ secrets.PUB_CREDENTIALS }}
         run: echo "$PUB_CREDENTIALS" > ~/.pub-cache/credentials.json && dart pub publish -f
-
