@@ -20,16 +20,22 @@ jobs:
       - name: Cache Flutter SDK
         uses: actions/cache@v3
         with:
-          path: ~/.flutter
-          key: ${{ runner.os }}-flutter-sdk-${{ matrix.flutter-version }}-${{ runner.os }}
+          path: ~/flutter
+          key: ${{ runner.os }}-flutter-sdk-3.x
           restore-keys: |
-            ${{ runner.os }}-flutter-sdk-${{ runner.os }}-
+            ${{ runner.os }}-flutter-sdk-
 
-      # Setup Flutter
+      # Setup Flutter (evitando reinstalación si ya está en caché)
       - name: Setup Flutter
-        uses: subosito/flutter-action@v2
-        with:
-          flutter-version: 3.x  # Usa la versión que prefieras
+        run: |
+          if [ ! -d "$HOME/flutter" ]; then
+            echo "Flutter no está instalado, descargando..."
+            git clone https://github.com/flutter/flutter.git --depth 1 -b stable ~/flutter
+          else
+            echo "Flutter ya está instalado, saltando instalación."
+          fi
+          echo "$HOME/flutter/bin" >> $GITHUB_PATH
+          flutter --version
 
       # Cache para las dependencias de Dart
       - name: Cache Dart Dependencies
@@ -38,9 +44,9 @@ jobs:
           path: |
             ~/.pub-cache
             .dart_tool
-          key: ${{ runner.os }}-flutter-deps-${{ hashFiles('**/pubspec.yaml') }}-${{ runner.os }}
+          key: ${{ runner.os }}-flutter-deps-${{ hashFiles('**/pubspec.yaml') }}
           restore-keys: |
-            ${{ runner.os }}-flutter-deps-${{ runner.os }}-
+            ${{ runner.os }}-flutter-deps-
 
       - name: Install Dependencies
         run: flutter pub get
@@ -65,16 +71,22 @@ jobs:
       - name: Cache Flutter SDK
         uses: actions/cache@v3
         with:
-          path: ~/.flutter
-          key: ${{ runner.os }}-flutter-sdk-${{ matrix.flutter-version }}-${{ runner.os }}
+          path: ~/flutter
+          key: ${{ runner.os }}-flutter-sdk-3.x
           restore-keys: |
-            ${{ runner.os }}-flutter-sdk-${{ runner.os }}-
+            ${{ runner.os }}-flutter-sdk-
 
-      # Setup Flutter
+      # Setup Flutter (evitando reinstalación si ya está en caché)
       - name: Setup Flutter
-        uses: subosito/flutter-action@v2
-        with:
-          flutter-version: 3.x  # Usa la versión que prefieras
+        run: |
+          if [ ! -d "$HOME/flutter" ]; then
+            echo "Flutter no está instalado, descargando..."
+            git clone https://github.com/flutter/flutter.git --depth 1 -b stable ~/flutter
+          else
+            echo "Flutter ya está instalado, saltando instalación."
+          fi
+          echo "$HOME/flutter/bin" >> $GITHUB_PATH
+          flutter --version
 
       # Cache para las dependencias de Dart
       - name: Cache Dart Dependencies
@@ -83,9 +95,9 @@ jobs:
           path: |
             ~/.pub-cache
             .dart_tool
-          key: ${{ runner.os }}-flutter-deps-${{ hashFiles('**/pubspec.yaml') }}-${{ runner.os }}
+          key: ${{ runner.os }}-flutter-deps-${{ hashFiles('**/pubspec.yaml') }}
           restore-keys: |
-            ${{ runner.os }}-flutter-deps-${{ runner.os }}-
+            ${{ runner.os }}-flutter-deps-
 
       - name: Install Dependencies
         run: flutter pub get
@@ -97,4 +109,3 @@ jobs:
         env:
           PUB_CREDENTIALS: ${{ secrets.PUB_CREDENTIALS }}
         run: echo "$PUB_CREDENTIALS" > ~/.pub-cache/credentials.json && dart pub publish -f
-
