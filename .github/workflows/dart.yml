@@ -20,22 +20,17 @@ jobs:
       - name: Cache Flutter SDK
         uses: actions/cache@v3
         with:
-          path: ~/flutter
-          key: ${{ runner.os }}-flutter-sdk-stable
+          path: ~/.flutter
+          key: ${{ runner.os }}-flutter-sdk-3.x
           restore-keys: |
             ${{ runner.os }}-flutter-sdk-
 
-      # Setup Flutter manualmente si no está en caché
+      # Setup Flutter usando acción oficial (más estable)
       - name: Setup Flutter
-        run: |
-          if [ ! -d "$HOME/flutter" ]; then
-            echo "Flutter no está instalado, descargando..."
-            git clone --depth 1 --branch stable https://github.com/flutter/flutter.git $HOME/flutter
-          fi
-          echo "Agregando Flutter al PATH"
-          echo "$HOME/flutter/bin" >> $GITHUB_PATH
-          export PATH="$HOME/flutter/bin:$PATH"
-          flutter doctor  # Verifica que Flutter está instalado correctamente
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: 3.x  # Usa la versión de Flutter que necesites
+          cache: true  # Habilita caché automático para mejorar la velocidad
 
       # Cache para las dependencias de Dart
       - name: Cache Dart Dependencies
