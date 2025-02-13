@@ -21,7 +21,7 @@ jobs:
         uses: actions/cache@v3
         with:
           path: ~/flutter
-          key: ${{ runner.os }}-flutter-sdk-3.x
+          key: ${{ runner.os }}-flutter-sdk-stable
           restore-keys: |
             ${{ runner.os }}-flutter-sdk-
 
@@ -30,7 +30,7 @@ jobs:
         run: |
           if [ ! -d "$HOME/flutter" ]; then
             echo "Flutter no está instalado, descargando..."
-            git clone --depth 1 --branch 3.x https://github.com/flutter/flutter.git $HOME/flutter
+            git clone --depth 1 --branch stable https://github.com/flutter/flutter.git $HOME/flutter
           fi
           echo "Agregando Flutter al PATH"
           echo "$HOME/flutter/bin" >> $GITHUB_PATH
@@ -71,7 +71,7 @@ jobs:
         uses: actions/cache@v3
         with:
           path: ~/flutter
-          key: ${{ runner.os }}-flutter-sdk-3.x
+          key: ${{ runner.os }}-flutter-sdk-stable
           restore-keys: |
             ${{ runner.os }}-flutter-sdk-
 
@@ -80,7 +80,7 @@ jobs:
         run: |
           if [ ! -d "$HOME/flutter" ]; then
             echo "Flutter no está instalado, descargando..."
-            git clone --depth 1 --branch 3.x https://github.com/flutter/flutter.git $HOME/flutter
+            git clone --depth 1 --branch stable https://github.com/flutter/flutter.git $HOME/flutter
           fi
           echo "Agregando Flutter al PATH"
           echo "$HOME/flutter/bin" >> $GITHUB_PATH
@@ -107,4 +107,3 @@ jobs:
         env:
           PUB_CREDENTIALS: ${{ secrets.PUB_CREDENTIALS }}
         run: echo "$PUB_CREDENTIALS" > ~/.pub-cache/credentials.json && dart pub publish -f
-
